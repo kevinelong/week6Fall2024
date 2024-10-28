@@ -14,21 +14,25 @@
         const fruit = ["apple", "banana", "cherry"]; //create array
         
         function addToPage(content, index){
-            // const d = document.createElement("div");
-            // d.innerText = `${index} - ${content}`;
-            // document.body.appendChild(d);
-            //append to existing html
-            document.body.innerHTML += index + " - " + content + "<br>"; 
+            const number = index === undefined ? "" : index + 1; //ternary
+            const prefix = number === "" ? "" : number + " - ";
+            document.body.innerHTML += prefix + content + "<br>"; 
             // x += ... shorter than  x = x + ...
         }
+        // addToPage("hello", 123); // manually pass a number as argument 2
+        // addToPage("goodbye", 456); 
 
-        addToPage("hello", 123); // manually pass a number as argument 2
-        addToPage("goodbye", 456); 
+        function addListToPage(name, list){
+            addToPage(`<BR>===${name}===`);
+            list.forEach(addToPage);  //passes value, index, array    
+        }
 
-        fruit.forEach(addToPage); //apply add function to each array element
+        // fruit.forEach(addToPage); //apply add function to each array element
+        // ["bob", "carol", "ted", "alice"].forEach(addToPage);
 
-        ["bob", "carol", "ted", "alice"].forEach(addToPage);
-
+        addListToPage("FRUIT", fruit);
+        addListToPage("PEOPLE", ["bob", "carol", "ted", "alice"]);
+        
 
 
 </script>
