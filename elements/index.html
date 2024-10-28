@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<h1>Elements</h1>
+    <script>
+        
+        const fruit = ["apple", "banana", "cherry"]; //create array
+        
+        function addToPage(content, index){
+            // const d = document.createElement("div");
+            // d.innerText = `${index} - ${content}`;
+            // document.body.appendChild(d);
+            //append to existing html
+            document.body.innerHTML += index + " - " + content + "<br>"; 
+            // x += ... shorter than  x = x + ...
+        }
+
+        addToPage("hello", 123); // manually pass a number as argument 2
+        addToPage("goodbye", 456); 
+
+        fruit.forEach(addToPage); //apply add function to each array element
+
+        ["bob", "carol", "ted", "alice"].forEach(addToPage);
+
+
+
+</script>
+</body>
+
+</html>
