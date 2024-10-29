@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+
+<body>
+    <h1>Timer</h1>
+    <div id="time">0</div>
+    <script>
+
+        let t = 0;
+        let limit =  60 * 60
+        
+        function step() {
+            time.innerText = limit - t;
+            t++;
+
+            if(t <= limit){
+                setTimeout(step, 1000); //recurse
+            }else{
+                alert("TA DA");
+            }
+        }
+        step();
+    </script>
+</body>
+
+</html>
