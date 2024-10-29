@@ -49,6 +49,8 @@ console.log(courses.find(c => "PROJ500" === c.CourseId).Title);
 // What are the titles of the courses that cost $50 or less?
 courses.filter(c => Number(c.Fee) <= 50).forEach(c => console.log(c.Title));
 
+/////////////////////////////////////////////////////////////////
+
 // What classes meet in "Classroom 1"?
 const results1 = courses.filter(c => c.Location === "Classroom 1").forEach(c => console.log(c.Title));
 console.log(results1); //undefined - forEach returns nothing
@@ -76,6 +78,6 @@ function print(text){
     console.log(text);
 }
 
-courses .filter(c => c.Location === "Classroom 1")
-        .map(c => c.Title)
-        .forEach(print);
+courses .filter(c => c.Location === "Classroom 1")  //limit to only matches
+        .map(c => c.Title)                          // keep only the title
+        .forEach(print);                            //show the title
