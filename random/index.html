@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getInteger(start, stop) {
+            const r = Math.random() * Math.random() * Math.random(); // 0-1
+            const i = Math.round((r * (stop - 1)) + start);
+            return i;
+        }
+        // document.body.innerText = getInteger(1, 6);
+        const moles = [];
+        const LIMIT = 12;
+        for (let n = 0; n < LIMIT; n++) {
+            moles.push({
+                x: getInteger(0, 99),
+                y: getInteger(0, 99),
+                dead: false
+            });
+        }
+        function render() { //draw
+            document.body.innerHTML = moles.map(m =>
+                `<div 
+                    onclick="this.remove()" 
+                    style="position:absolute; left:${m.x}vw; top:${m.y}vw;"
+                >
+                    M
+                </div>`
+            ).join('');
+        }
+        render();
+    </script>
+</body>
+
+</html>
