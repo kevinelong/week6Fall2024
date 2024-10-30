@@ -5,8 +5,7 @@
             const i = Math.round((r * (stop - 1)) + start);
             return i;
         }
-        // document.body.innerText = getInteger(1, 6);
-        const moles = [];
+        const moles = []; //MOLE MODEL
         const LIMIT = 12;
         for (let n = 0; n < LIMIT; n++) {
             moles.push({
@@ -15,13 +14,25 @@
                 dead: false
             });
         }
+        function onClickMole(event) {
+            moles[event.target.dataset.index].dead = true;
+            render();
+        }
+        function getMole(mole, index) {
+            const e = document.createElement("img"); // create image element
+            e.dataset.index = index; //data-index= index
+            e.src = moles[index].dead ? "x.png" : "mole.png";
+            e.style.left = mole.x + "vw";
+            e.style.top = mole.y + "vw";
+            e.style.width = "32px";
+            e.style.position = "absolute";
+            e.addEventListener("click", onClickMole)
+            return e;
+        }
         function render() { //draw
-            document.body.innerHTML = moles.map(m =>
-                `<img src="mole.png"
-                    onclick="this.remove()" 
-                    style="width:32px;position:absolute; left:${m.x}vw; top:${m.y}vw;"
-                >`
-            ).join('');
+            console.log("RENDERING")
+            document.body.innerHTML = "";
+            moles.forEach((m, i) => { document.body.appendChild(getMole(m, i)) });
         }
         render();
     </script>
