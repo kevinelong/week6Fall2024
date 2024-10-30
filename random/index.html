@@ -1,16 +1,24 @@
 <body>
     <script>
         function getInteger(start, stop) {
-            const r = Math.random() * Math.random() * Math.random(); // 0-1
+            const r = Math.random(); // 0-1
             const i = Math.round((r * (stop - 1)) + start);
             return i;
+        }
+        function getNormalized(start, stop) {
+            //why 3? 3 give a "normal distribution" haystack shape towards center
+            return (
+                getInteger(start, stop) +
+                getInteger(start, stop) +
+                getInteger(start, stop)
+            ) / 3;
         }
         const moles = []; //MOLE MODEL
         const LIMIT = 12;
         for (let n = 0; n < LIMIT; n++) {
             moles.push({
-                x: getInteger(0, 99),
-                y: getInteger(0, 99),
+                x: getNormalized(0, 99),
+                y: getNormalized(0, 99),
                 dead: false
             });
         }
@@ -21,10 +29,10 @@
         function getMole(mole, index) {
             const e = document.createElement("img"); // create image element
             e.dataset.index = index; //data-index= index
-            e.src = moles[index].dead ? "x.png" : "mole.png";
-            e.style.left = mole.x + "vw";
-            e.style.top = mole.y + "vw";
-            e.style.width = "32px";
+            e.src = moles[index].dead ? "./images/x.png" : "images/mole.png";
+            e.style.left = mole.x + "vw"; //vw viewport width
+            e.style.top = mole.y + "vw";//vw viewport width
+            e.style.width = "12vw";//vw viewport width
             e.style.position = "absolute";
             e.addEventListener("click", onClickMole)
             return e;
