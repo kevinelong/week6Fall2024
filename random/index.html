@@ -13,25 +13,29 @@
                 getInteger(start, stop)
             ) / 3;
         }
-        const moles = []; //MOLE MODEL
+        function pickOne(list){
+            return list[getInteger(0,list.length)]
+        }
+        const sprites = []; //MOLE MODEL
         const LIMIT = 12;
         for (let n = 0; n < LIMIT; n++) {
-            moles.push({
+            sprites.push({
                 x: getNormalized(0, 99),
                 y: getNormalized(0, 99),
+                kind: pickOne(["mole", "squirrel"]),
                 dead: false
             });
         }
         function onClickMole(event) {
-            moles[event.target.dataset.index].dead = true;
+            sprites[event.target.dataset.index].dead = true;
             render();
         }
-        function getMole(mole, index) {
+        function getSprite(sprite, index) {
             const e = document.createElement("img"); // create image element
             e.dataset.index = index; //data-index= index
-            e.src = moles[index].dead ? "./images/x.png" : "images/mole.png";
-            e.style.left = mole.x + "vw"; //vw viewport width
-            e.style.top = mole.y + "vw";//vw viewport width
+            e.src = sprites[index].dead ? `./images/dead_${sprite.kind}.png` : `images/${sprite.kind}.png`;
+            e.style.left = sprite.x + "vw"; //vw viewport width
+            e.style.top = sprite.y + "vw";//vw viewport width
             e.style.width = "12vw";//vw viewport width
             e.style.position = "absolute";
             e.addEventListener("click", onClickMole)
@@ -40,7 +44,7 @@
         function render() { //draw
             console.log("RENDERING")
             document.body.innerHTML = "";
-            moles.forEach((m, i) => { document.body.appendChild(getMole(m, i)) });
+            sprites.forEach((m, i) => { document.body.appendChild(getSprite(m, i)) });
         }
         render();
     </script>
