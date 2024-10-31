@@ -1,0 +1,39 @@
+<body>
+    <h1>Web Demo</h1>
+    <h2>Basket Ball Teams</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Team Name</th>
+                <th>Rank</th>    
+            </tr>
+        </thead>
+        <tbody id="teamsBody"></tbody>
+    </table>
+</body>
+<script>
+    //DATA
+    const teamsList = [
+        {teamName:"Chicago Bulls", rank: 12}, //,element
+        {teamName:"Seventy Sixers", rank: 3}
+    ]; //end of statement
+
+    //CREATE HTML DOCUMENT OBJECTS PROGRAMATICALLY,
+    // FOR EACH OBJECT IN THE ARRAY
+    // create a row of data for the tbody
+    function createTeamRow(teamObject){
+        const trTeam = document.createElement("tr");
+
+        const tdTeamName = document.createElement("td");
+        const tdRank = document.createElement("td");
+
+        tdTeamName.innerText = teamObject.teamName;
+        tdRank.innerText = teamObject.rank;
+
+        trTeam.appendChild(tdTeamName);
+        trTeam.appendChild(tdRank);
+
+        teamsBody.appendChild(trTeam);
+    }
+    teamsList.forEach(createTeamRow); //LOOP
+</script>
